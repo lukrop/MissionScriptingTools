@@ -4058,6 +4058,9 @@ do -- mist.debug scope
 	-- @param fname
 	function mist.debug.dump_G(fname)
 		if lfs and io then
+			if not fname then
+				fname = "dump-global-"..timer.getTime()
+			end
 			local fdir = lfs.writedir() .. [[Logs\]] .. fname
 			local f = io.open(fdir, 'w')
 			f:write(mist.utils.tableShow(_G))
